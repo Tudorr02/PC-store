@@ -128,9 +128,9 @@ int main(){
     cout<<"\n\n\n";
 
 
-
-try {
     int input;
+try {
+
     cout<<"1.Customer\n2.Admin\nInput: ";
     cin>>input;
     if (input == 1) {
