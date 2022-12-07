@@ -128,15 +128,16 @@ int main(){
     cout<<"\n\n\n";
 
 
-    int input;
-try {
 
+try {
+    int input=0;
     cout<<"1.Customer\n2.Admin\nInput: ";
     cin>>input;
     if (input == 1) {
-        int condition, k = 1;
+        int k = 1;
 
         while (k == 1) {
+            int condition;
             show_menu_customer();
             cout << "Customer: ";
             cin >> condition;
