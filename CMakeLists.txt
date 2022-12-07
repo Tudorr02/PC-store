@@ -41,11 +41,8 @@ endif()
 ###############################################################################
 
 # NOTE: update executable name in .github/workflows/cmake.yml when changing name here
-<<<<<<< HEAD
+
 add_executable(${PROJECT_NAME} main.cpp Case.cpp Component.cpp CPU.cpp Customer.cpp Deposit.cpp GPU.cpp Motherboard.cpp Power_Supply.cpp RAM.cpp Storage.cpp)
-=======
-add_executable(${PROJECT_NAME} main.cpp)
->>>>>>> db3c949d86dd81b71c1e57c0a7ca10ea56e8862b
 
 ###############################################################################
 
