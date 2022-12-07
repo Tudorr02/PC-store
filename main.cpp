@@ -1,4 +1,5 @@
 #include <iostream>
+<<<<<<< HEAD
 #include <memory>
 #include "Deposit.h"
 #include "Customer.h"
@@ -87,3 +88,10 @@ int main(){
 
 
 }
+=======
+
+int main() {
+    std::cout << "Hello, world!\n";
+    return 0;
+}
+>>>>>>> db3c949d86dd81b71c1e57c0a7ca10ea56e8862b
