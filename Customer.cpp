@@ -3,7 +3,7 @@
 
 int Customer:: number_of_orders=0;
 
-void Customer::market(vector<Deposit> &deposits) {
+void Customer::market(const vector<Deposit> &deposits) {
     Deposit::show_all_products(deposits);
 }
 

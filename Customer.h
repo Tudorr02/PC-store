@@ -10,7 +10,7 @@ class Customer {
 
 public:
 
-    static void market(vector<Deposit>& deposits);
+    static void market(const vector<Deposit>& deposits);
     static int get_number_of_orders();
     static void order(const string & _id,const vector<Deposit>& deposits);
 

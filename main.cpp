@@ -97,6 +97,16 @@ int main(){
     c24=c5->clone();
     c25=c5->clone();
 
+    cout<<"\nStats for c17:\n";
+    cout<<"Brand: "<<c17->get_brand();
+    cout<<"Gamind: "<<c17->get_gaming_condition();
+    cout<<"Profit per product: "<<c17->get_market_price()-c17->get_price();
+    cout<<"Warranty: "<<c17->get_product_warranty();
+
+
+    c25->change_price(2500);
+
+
 
     vector<std::shared_ptr<Component>> components_1{c1,c2,c3,c4,c5,c6,c7,c8,c9,c10};
     vector<std::shared_ptr<Component>> components_2{c13,c14,c15,c16,c19,c20,c21,c22,c23,c24,c25};
@@ -116,109 +126,126 @@ int main(){
     vector<Deposit> deposits {D1,D2,D3};
 
     cout<<"\n\n\n";
+
+
+
+try {
     int input;
     cout<<"1.Customer\n2.Admin\nInput: ";
     cin>>input;
+    if (input == 1) {
+        int condition, k = 1;
 
-    if(input==1){
-        int condition,k=1;
-
-        while(k==1){
+        while (k == 1) {
             show_menu_customer();
-            cout<<"Customer: ";
-            cin>>condition;
+            cout << "Customer: ";
+            cin >> condition;
 
-                switch (condition) {
+            switch (condition) {
 
-                    case 1 :
-                        Customer::market(deposits);
-                        break;
-                    case 2 :
-                        cout << "Number or orders: " << Customer::get_number_of_orders()<<"\n";
-                        break;
-                    case 3 : {
-                        string ID;
-                        cout << "ID of the product: ";
-                        cin >> ID;
-                        if(ID.empty() || ID.size()<7)
-                            throw input_error("\ninput error  in menu-> customer->order (ID invalid)\n");
-                        Customer::order(ID, deposits);
-                    }
-                        break;
-
-                    case 4:
-                        k = 0;
-                        break;
-
-                    default: cout<<"----------------------------------\nInvalid user input.Type 1 or 2 or 3 or 4\n";break;
-
+                case 1 :
+                    Customer::market(deposits);
+                    break;
+                case 2 :
+                    cout << "Number or orders: " << Customer::get_number_of_orders() << "\n";
+                    break;
+                case 3 : {
+                    string ID;
+                    cout << "ID of the product: ";
+                    cin >> ID;
+                    if (ID.empty() || ID.size() < 7)
+                        throw input_error("\ninput error  in menu-> customer->order (ID invalid)\n");
+                    Customer::order(ID, deposits);
                 }
+                    break;
+
+                case 4:
+                    k = 0;
+                    break;
+
+                default:
+                    cout << "----------------------------------\nInvalid user input.Type 1 or 2 or 3 or 4\n";
+                    break;
+
             }
-
-
-
         }
 
 
-    if(input==2){
-        int condition,k=1;
-        while(k==1){
+    }
+
+
+    if (input == 2) {
+        int condition, k = 1;
+        while (k == 1) {
             show_menu_deposit();
-            cout<<"Deposit: ";
-            cin>>condition;
+            cout << "Deposit: ";
+            cin >> condition;
 
-                switch (condition) {
+            switch (condition) {
 
-                    case 1:{
-                        {
-                            string ID;
-                            cout << "ID of the product: ";
-                            cin >> ID;
-                                if(ID.empty() || ID.size()<7)
-                                    throw input_error("\ninput error in menu-> deposit->search_product by id\n");
-                            for( auto& deposit: deposits){
-                                deposit.search_product_by_ID(ID);
-                            }
-                        }
-
-
-                    }break;
-
-                    case 2: {
+                case 1: {
+                    {
                         string ID;
-                        int count = 0;
-
                         cout << "ID of the product: ";
                         cin >> ID;
-                        if(ID.empty() || ID.size()<7)
-                            throw input_error("\ninput error  in menu-> deposit->delete product by id (ID invalid)\n");
-
-                        cout << "Number of products you want to delete: ";
-                        cin >> count;
-
-                        if(count<1)
-                            throw input_error("\n input error  in menu-> deposit->delete product by id (numver of products invalid). It can't be smaller than 1\n");
-
+                        if (ID.empty() || ID.size() < 7)
+                            throw input_error("\ninput error in menu-> deposit->search_product by id\n");
                         for (auto &deposit: deposits) {
-                            deposit.delete_product_by_ID(ID, count);
+                            deposit.search_product_by_ID(ID);
                         }
-                    }break;
+                    }
 
-                    case 3:{
-                        for (auto &deposit: deposits) {
-                            deposit.show_products();
-                        }
-                    }break;
-
-                    case 4:k=0;break;
-
-                    default:cout<<"----------------------------------\nInvalid user input.Type 1 or 2 or 3 or 4\n";break;
 
                 }
+                    break;
+
+                case 2: {
+                    string ID;
+                    int count = 0;
+
+                    cout << "ID of the product: ";
+                    cin >> ID;
+                    if (ID.empty() || ID.size() < 7)
+                        throw input_error("\ninput error  in menu-> deposit->delete product by id (ID invalid)\n");
+
+                    cout << "Number of products you want to delete: ";
+                    cin >> count;
+
+                    if (count < 1)
+                        throw input_error(
+                                "\n input error  in menu-> deposit->delete product by id (numver of products invalid). It can't be smaller than 1\n");
+
+                    for (auto &deposit: deposits) {
+                        deposit.delete_product_by_ID(ID, count);
+                    }
+                }
+                    break;
+
+                case 3: {
+                    for (auto &deposit: deposits) {
+                        deposit.show_products();
+                    }
+                }
+                    break;
+
+                case 4:
+                    k = 0;
+                    break;
+
+                default:
+                    cout << "----------------------------------\nInvalid user input.Type 1 or 2 or 3 or 4\n";
+                    break;
+
+            }
 
 
         }
     }
+}catch (input_error& e){
+    cout<<e.what()<<"\n";
+}catch (error_app& e){
+    cout<<e.what()<<"\n";
+}
 
 
 
