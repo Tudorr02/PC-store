@@ -19,11 +19,11 @@ class Deposit{
 public:
 
     bool search_product_by_ID(const string &_id);
-    void delete_product_by_ID(const string& _id, int count);
+    void delete_product_by_ID(const string& _id, int& count);
     void add_product(const std::shared_ptr<Component>& item);
     void add_products(const vector<std::shared_ptr<Component>>& items);
     void show_products();
-    static void show_all_products(vector<Deposit>& deposits);
+    static void show_all_products(const vector<Deposit>& deposits);
     static int get_number_of_products();
 
     string promo_code_();
