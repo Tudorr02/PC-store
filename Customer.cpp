@@ -11,10 +11,11 @@ int Customer:: get_number_of_orders(){
     return number_of_orders;
 }
 
-void Customer:: order(const string & _id,vector<Deposit>& deposits){
+void Customer:: order(const string & _id,const vector<Deposit>& deposits){
 
-    int count = 1;
+
     try {
+        int count = 1;
         if(_id.size()<7 || _id.empty())
             throw input_error ( "invalid ID in Customer-> order method");
 

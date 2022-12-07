@@ -123,7 +123,7 @@ void Deposit:: show_products(){
 
 }
 
-void Deposit::show_all_products(vector<Deposit> &deposits) {
+void Deposit::show_all_products(const vector<Deposit> &deposits) {
     try {
         if(deposits.empty())
             throw deposit_error("Deposit vector is empty. Add some deposit type objects before using this method!");
