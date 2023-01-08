@@ -9,10 +9,10 @@ Case::Case(const string& _brand,const string& _name,float _price,bool _gaming,
     ID_product.insert(0,"CA");
 
     if(_case_weight<0 || _case_weight>4000)
-        throw constructor_error("case_weight can't be negative or bigger than 4000",_case_weight);
+        throw constructor_error_invalid_attribute("case_weight can't be negative or bigger than 4000",_case_weight);
 
     if(_case_fans<0 || _case_fans>12)
-        throw constructor_error("case_fans can't be negative or bigger than 12",_case_fans);
+        throw constructor_error_invalid_attribute("case_fans can't be negative or bigger than 12",_case_fans);
 }
 
 std::shared_ptr<Component> Case::clone() {return std::make_shared<Case>(*this);}
@@ -60,4 +60,3 @@ void Case:: print(std::ostream& out) {
     out << "\n";
 }
 
-string Case::promo_code_() {return "";}

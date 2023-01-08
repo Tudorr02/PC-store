@@ -8,7 +8,7 @@ Motherboard::Motherboard(const string& _brand,const string &_name,float _price,b
     ID_product.insert(0,"MO");
 
     if(_m_ram_slots<2 || _m_ram_slots>8)
-        throw constructor_error(" m_ram_slots can't be smaller than 2 / bigger than 8",_m_ram_slots);
+        throw constructor_error_invalid_attribute(" m_ram_slots can't be smaller than 2 / bigger than 8",_m_ram_slots);
 }
 
 std::shared_ptr<Component> Motherboard::clone() {return std::make_shared<Motherboard>(*this);}
@@ -50,4 +50,3 @@ void Motherboard:: print(std::ostream& out) {
     out<<"\n";
 }
 
-string Motherboard::promo_code_() {return "";}

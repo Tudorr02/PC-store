@@ -9,13 +9,13 @@ GPU::GPU(const string& _brand,const string &_name,float _price,bool _gaming,
     ID_product.insert(0,"GP");
 
     if(_gpu_memory_size<1 || _gpu_memory_size>32)
-        throw constructor_error("gpu_memory_type can't be smaller than 1 /bigger than 32 ",_gpu_memory_size);
+        throw constructor_error_invalid_attribute("gpu_memory_type can't be smaller than 1 /bigger than 32 ",_gpu_memory_size);
 
     if(_fans<1 || _fans>8)
-        throw constructor_error("fans can't be smaller than 1 ",fans);
+        throw constructor_error_invalid_attribute("fans can't be smaller than 1 ",fans);
 
     if((int)_gpu_ports.size()==0 || (int)_gpu_ports.size()>8)
-        throw constructor_error("Check the vector of ports for GPUs,it can't be empty /have more than 8 ports.");
+        throw constructor_error_invalid_attribute("Check the vector of ports for GPUs,it can't be empty /have more than 8 ports.");
 
 
 
@@ -72,4 +72,3 @@ void GPU:: print(std::ostream& out) {
 
 }
 
-string GPU::promo_code_() {return "";}

@@ -10,7 +10,7 @@ Storage::Storage(const string& _brand,const string &_name,float _price,bool _gam
     this->promo_code="XKV9C-Q3A5B";
 
     if(_storage_capacity<56 || _storage_capacity>4000)
-        throw constructor_error("storage_capacity can' be smaller than 56/ bigger than 4000",_storage_capacity);
+        throw constructor_error_invalid_attribute("storage_capacity can' be smaller than 56/ bigger than 4000",_storage_capacity);
 
 }
 

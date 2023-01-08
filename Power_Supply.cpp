@@ -57,4 +57,3 @@ void Power_Supply:: print(std::ostream& out) {
     }
     out<<"\n";
 }
-string Power_Supply::promo_code_() {return "";}

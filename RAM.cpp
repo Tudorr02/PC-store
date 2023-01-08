@@ -9,7 +9,7 @@ RAM::RAM(const string& _brand,const string &_name,float _price,bool _gaming,
     ID_product.insert(0,"RA");
 
     if(_ram_capacity<2 || _ram_capacity>64)
-        throw constructor_error("ram_capacity can' be smaller than 2/ bigger than 64",_ram_capacity);
+        throw constructor_error_invalid_attribute("ram_capacity can' be smaller than 2/ bigger than 64",_ram_capacity);
 }
 
 
@@ -55,4 +55,3 @@ void RAM:: print(std::ostream& out) {
     out<<"\n";
 }
 
-string RAM::promo_code_() {return "";}

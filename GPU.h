@@ -27,7 +27,7 @@ public:
     std::shared_ptr<Component> clone()override;
     float get_market_price() override;
     int get_product_warranty() override;
-    string promo_code_() override;
+
 
 };
 

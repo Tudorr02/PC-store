@@ -51,8 +51,8 @@ void Deposit:: delete_product_by_ID(const string& _id, int &count) {
         if(_id.empty() || (int)_id.size()<7)
             throw input_error("Invalid ID in delete_product_by_ID method");
 
-        if(count<1)
-            throw input_error(" count in delete_by_ID method can't be smaller than 1");
+       // if(count<1)
+           // throw input_error(" count in delete_by_ID method can't be smaller than 1");
         int position = 0;
         int total_products_with_id = 0;
         int copy_count = count;
@@ -71,7 +71,7 @@ void Deposit:: delete_product_by_ID(const string& _id, int &count) {
 
         }
         if(total_products_with_id==0)
-            throw input_error(" ID from the delete_product_by_ID is invalid.The product you are looking for doesn't exist in deposit");
+           std::cout<< (" ID from the delete_product_by_ID is invalid.The product you are looking for doesn't exist in deposit");
 
         int difference;
         if(copy_count> total_products_with_id)
@@ -79,7 +79,7 @@ void Deposit:: delete_product_by_ID(const string& _id, int &count) {
         else
             difference=total_products_with_id-copy_count;
 
-        std::cout << "Products left with ID " << _id << " :" << difference << "\n";
+        std::cout << "Products left (in this deposit) with ID " << _id << " :" << difference << "\n";
     } catch (input_error & e) {
         std::cout<<e.what()<<"\n";
     }
@@ -93,6 +93,13 @@ void Deposit::add_product(const std::shared_ptr<Component>& item){
     this->components.push_back(item);
     number_of_products++;
     std::cout<<"\n*** Item with ID "<<item->get_ID_product()<<" has been added to deposit!\n";
+}
+
+void Deposit::add_product_by_ID(const std::string &ID) {
+    for(const auto & comps: this->components ){
+        if(comps->get_ID_product()==ID)
+            this->add_product(comps);
+    }
 }
 
 void Deposit::add_products(const vector<std::shared_ptr<Component>>& items){
@@ -154,10 +161,10 @@ string Deposit::promo_code_() {
     std::cout<<"***PROMO CODE : ";
     if(!this->components.empty()) {
         for (const auto &component: this->components) {
-            std::shared_ptr<Component> test = std::dynamic_pointer_cast<Storage>(component);
+            std::shared_ptr<Storage> test = std::dynamic_pointer_cast<Storage>(component);
             if (test != nullptr) {
-                std::cout << component->promo_code_();
-                return component->promo_code_();
+                std::cout << test->promo_code_();
+                return test->promo_code_();
             }
         }
     }
@@ -191,4 +198,46 @@ Deposit& Deposit:: operator=( Deposit other){
 
 void swap(Deposit& d1, Deposit& d2){
     std::swap(d1.components,d2.components);
+}
+
+
+
+///from customer
+int Deposit:: number_of_orders=0;
+
+void Deposit::market(const vector<Deposit> &deposits) {
+    Deposit::show_all_products(deposits);
+}
+
+int Deposit:: get_number_of_orders(){
+    return number_of_orders;
+}
+
+void Deposit:: order(const string & _id,const vector<Deposit>& deposits){
+
+
+    try {
+        int count = 1;
+        if(_id.size()<7 || _id.empty())
+            throw input_error ( "invalid ID in Customer-> order method");
+
+        if( deposits.empty())
+            throw deposit_error (" Deposits from Customer-> order method are empty. Add some deposit type object before using the method!");
+
+        for (auto deposit: deposits) {
+            std::cout << "------>IN DEPOSIT " << count++ << "\n";
+            if (deposit.search_product_by_ID(_id)) {
+                number_of_orders++;
+                int temp=1;
+                deposit.delete_product_by_ID(_id,temp);
+                std::cout << "**NEW ORDER : ITEM ID :" << _id << "\nNumber of orders is now " << number_of_orders
+                          << "\n";
+                break;
+            }
+        }
+    }catch(input_error& e) {
+        std::cout<<e.what()<<"\n";
+    }catch (deposit_error& e) {
+        std::cout<<e.what()<<"\n";
+    }
 }

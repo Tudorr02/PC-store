@@ -9,13 +9,13 @@ CPU::CPU(const string& _brand,const string &_name,float _price,bool _gaming,
     ID_product.insert(0,"CP");
 
     if(_cpu_cores<0 || _cpu_cores >24 || _cpu_cores%2!=0)
-        throw constructor_error("cpu_cores can't be negative/ bigger than 24 / odd number ",_cpu_cores);
+        throw constructor_error_invalid_attribute("cpu_cores can't be negative/ bigger than 24 / odd number ",_cpu_cores);
 
     if(_cpu_threads<0 || _cpu_threads >48 || _cpu_threads%2!=0)
-        throw constructor_error("cpu_threads can't be negative/ bigger than 48 / odd number ",_cpu_threads);
+        throw constructor_error_invalid_attribute("cpu_threads can't be negative/ bigger than 48 / odd number ",_cpu_threads);
 
     if(_cpu_frequency<0 || _cpu_frequency>15)
-        throw constructor_error("cpu_frequency can't be negative / bigger than 15",_cpu_frequency);
+        throw constructor_error_invalid_attribute("cpu_frequency can't be negative / bigger than 15",_cpu_frequency);
 
 
 }
@@ -61,4 +61,3 @@ void CPU::print(std::ostream & out) {
     out<<"\n";
 }
 
-string CPU::promo_code_() {return "";}
