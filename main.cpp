@@ -238,7 +238,7 @@ int main(){
 
                     case 2: {
                         string ID;
-                        int count;
+
 
                         cout << "ID of the product: ";
                         cin >> ID;
@@ -246,7 +246,7 @@ int main(){
                             cout << "Invalid ID\n";
 
                         } else {
-
+                            int count;
                             cout << "Number of products you want to delete: ";
                             cin >> count;
 
