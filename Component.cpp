@@ -59,11 +59,11 @@ void Component::change_price(float new_price){
 const std::ostream &  operator<<( std::ostream& out, Component & component){
 
     out<<"\n-----------COMPONENT----------\n";
-    out<<"->Brand : "<<component.brand<<"\n";
+    out<<"->Brand : "<<component.get_brand()<<"\n";
     out<<"->Name : "<<component.name<<"\n";
     out<<"->Price : "<<component.price<<" $\n";
     std::string text;
-    if(component.gaming)
+    if(component.get_gaming_condition())
         text="true";
     else
         text="false";

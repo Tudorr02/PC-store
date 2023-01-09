@@ -7,6 +7,8 @@ bool Deposit::search_product_by_ID(const string& _id){
 
     int count=0;
     string name_of_product;
+    float market_price;
+    int product_warranty;
     try {
         if (_id.empty() || _id.size()<7u)
             throw input_error("invalid ID in search_product_by_ID method");
@@ -15,8 +17,11 @@ bool Deposit::search_product_by_ID(const string& _id){
         for (const auto &item: this->components) {
             if (_id == item->get_ID_product()) {
                 count++;
-                if (name_of_product.empty())
+                if (name_of_product.empty()) {
                     name_of_product = item->get_name();
+                    market_price=item->get_market_price();
+                    product_warranty=item->get_product_warranty();
+                }
             }
 
         }
@@ -31,6 +36,9 @@ bool Deposit::search_product_by_ID(const string& _id){
     if(count>0){
         std::cout<<"Product name: "<<name_of_product<<"\n";
         std::cout<<"Products in deposit: "<<count<<"\n";
+        std::cout<<"Price: "<<market_price<<"\n";
+        std::cout<<"Warranty: "<<product_warranty<<"\n";
+
         std::cout<<"-------------------------------------------\n";
         return true;
     }
@@ -226,6 +234,9 @@ void Deposit:: order(const string & _id,const vector<Deposit>& deposits){
                 deposit.delete_product_by_ID(_id,temp);
                 std::cout << "**NEW ORDER : ITEM ID :" << _id << "\nNumber of orders is now " << number_of_orders
                           << "\n";
+                if(_id[0]=='S' && _id[1]=='T')
+                    deposit.promo_code_();
+
                 break;
             }
         }
