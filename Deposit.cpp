@@ -7,8 +7,8 @@ bool Deposit::search_product_by_ID(const string& _id){
 
     int count=0;
     string name_of_product;
-    float market_price;
-    int product_warranty;
+    float market_price=0;
+    int product_warranty=0;
     try {
         if (_id.empty() || _id.size()<7u)
             throw input_error("invalid ID in search_product_by_ID method");

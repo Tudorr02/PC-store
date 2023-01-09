@@ -238,7 +238,7 @@ int main(){
 
                     case 2: {
                         string ID;
-                        int count = 0;
+                        int count;
 
                         cout << "ID of the product: ";
                         cin >> ID;
