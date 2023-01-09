@@ -8,7 +8,7 @@ bool Deposit::search_product_by_ID(const string& _id){
     int count=0;
     string name_of_product;
     try {
-        if (_id.empty() || (int)_id.size()<7)
+        if (_id.empty() || _id.size()<7u)
             throw input_error("invalid ID in search_product_by_ID method");
 
 
@@ -47,7 +47,7 @@ bool Deposit::search_product_by_ID(const string& _id){
 
 void Deposit:: delete_product_by_ID(const string& _id, int &count) {
 
-    try {
+
         if(_id.empty() || (int)_id.size()<7)
             throw input_error("Invalid ID in delete_product_by_ID method");
 
@@ -80,9 +80,7 @@ void Deposit:: delete_product_by_ID(const string& _id, int &count) {
             difference=total_products_with_id-copy_count;
 
         std::cout << "Products left (in this deposit) with ID " << _id << " :" << difference << "\n";
-    } catch (input_error & e) {
-        std::cout<<e.what()<<"\n";
-    }
+
 }
 
 
@@ -103,7 +101,7 @@ void Deposit::add_product_by_ID(const std::string &ID) {
 }
 
 void Deposit::add_products(const vector<std::shared_ptr<Component>>& items){
-    try {
+
         if(items.empty())
             throw input_error(" Empty vector from add_products method");
         this->components.insert(this->components.end(), items.begin(), items.end());
@@ -112,21 +110,17 @@ void Deposit::add_products(const vector<std::shared_ptr<Component>>& items){
             std::cout << "\n*** Item with ID " << item->get_ID_product() << " has been added to deposit!\n";
             number_of_products++;
         }
-    } catch (input_error & e) {
-        std::cout<<e.what()<<"\n";
-    }
+
 }
 
 void Deposit:: show_products(){
 
-    try {
+
         if(this->components.empty())
             throw deposit_error("Deposit is empty. Add some components before using deposit's methods!");
         for (const auto &item: this->components)
             std::cout << *item;
-    } catch (deposit_error & e) {
-        std::cout<<e.what()<<"\n";
-    }
+
 
 }
 
@@ -182,7 +176,7 @@ int Deposit::get_number_of_products() {
 Deposit::Deposit(const Deposit& other){
 
     for(const auto &item: other.components){
-        this->components.push_back(item);
+        this->components.push_back(item->clone());
         number_of_products++;
     }
 

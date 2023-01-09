@@ -106,9 +106,14 @@ int main(){
     vector<std::shared_ptr<Component>> components_1{c1,c2,c3,c4,c5,c6,c7,c8,c9,c10};
     vector<std::shared_ptr<Component>> components_2{c13,c14,c15,c16,c19,c20,c21,c22,c23,c24,c25};
     Deposit D1;
+
+
     D1.add_products(components_1);
 
-    Deposit D2(D1);
+    Deposit D2=D1;
+
+
+
     D2.add_product(c11);
     D2.add_product(c12);
 

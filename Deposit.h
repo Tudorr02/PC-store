@@ -13,12 +13,12 @@
 
 class Deposit{
 
-    vector<std::shared_ptr<Component>> components;
+    //vector<std::shared_ptr<Component>> components;
     static int number_of_products;
     static int number_of_orders;
 
 public:
-
+    vector<std::shared_ptr<Component>> components;
     bool search_product_by_ID(const string &_id);
     void delete_product_by_ID(const string& _id, int& count);
     void add_product(const std::shared_ptr<Component>& item);
