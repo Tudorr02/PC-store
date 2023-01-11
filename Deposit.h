@@ -10,6 +10,7 @@
 #include "Power_Supply.h"
 #include "RAM.h"
 #include "Storage.h"
+#include "Monitor.h"
 
 class Deposit{
 

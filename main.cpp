@@ -2,7 +2,7 @@
 
 #include <memory>
 #include "Deposit.h"
-//#include "Customer.h"
+
 #include "exceptions.h"
 
 
@@ -47,26 +47,31 @@ int main(){
     std::shared_ptr<Component>c13;
     std::shared_ptr<Component>c14;
     std::shared_ptr<Component>c15;
-    std::shared_ptr<Component>c16;
-    std::shared_ptr<Component>c17;
-    std::shared_ptr<Component>c18;
-    std::shared_ptr<Component>c19;
-    std::shared_ptr<Component>c20;
-    std::shared_ptr<Component>c21;
-    std::shared_ptr<Component>c22;
-    std::shared_ptr<Component>c23;
-    std::shared_ptr<Component>c24;
-    std::shared_ptr<Component>c25;
+    std::shared_ptr<Component> c16;
+    std::shared_ptr<Component> c17;
+    std::shared_ptr<Component> c18;
+    std::shared_ptr<Component> c19;
+    std::shared_ptr<Component> c20;
+    std::shared_ptr<Component> c21;
+    std::shared_ptr<Component> c22;
+    std::shared_ptr<Component> c23;
+    std::shared_ptr<Component> c24;
+    std::shared_ptr<Component> c25;
+    std::shared_ptr<Component> c26;
+    std::shared_ptr<Component> c27;
 
 
     try {
         c1 = std::make_shared<CPU>("Intel", "Intel i7 k40900", 700, true, 8, 16, 15,
                                    CPU_Socket::LGA_1700, CPU_Series::Intel_I7);
-        c2=std ::make_shared<Case>("Kingston","Kinston JKQQ",800,false,999,3,true,Case_colors::white);
-        c3=std::make_shared<GPU>("Gigabyte","GTX 1500",900,true,4,GPU_Memory_Type::GDDR3,GPU_Series::GTX_1000,gaming_ports_gpu,4);
-        c4=std::make_shared<Motherboard>("Gigabye", "ZX 8900", 300, true,CPU_Socket::AM4,3,Format::mITX,false);
-        c5=std::make_shared<Power_Supply>("Corsair","CS-800",300,true,PS_Power::MHz_750,PS_Certification::Titanium_80,PS_Modular::Semi_Modular);
-        c6=std::make_shared<RAM>("SAMSUNG","SAMSUNG 344",190,true,RAM_type::DDR5,RAM_Frequency::MHz_5600,8,false);
+        c2 = std::make_shared<Case>("Kingston", "Kinston JKQQ", 800, false, 999, 3, true, Case_colors::white);
+        c3 = std::make_shared<GPU>("Gigabyte", "GTX 1500", 900, true, 4, GPU_Memory_Type::GDDR3, GPU_Series::GTX_1000,
+                                   gaming_ports_gpu, 4);
+        c4 = std::make_shared<Motherboard>("Gigabye", "ZX 8900", 300, true, CPU_Socket::AM4, 3, Format::mITX, false);
+        c5 = std::make_shared<Power_Supply>("Corsair", "CS-800", 300, true, PS_Power::MHz_750,
+                                            PS_Certification::Titanium_80, PS_Modular::Semi_Modular);
+        c6 = std::make_shared<RAM>("SAMSUNG", "SAMSUNG 344", 190, true, RAM_type::DDR5, RAM_Frequency::MHz_5600, 8,
+                                   false);
         c7=std::make_shared<Storage>("SAMSUNG","CS 9800",500,true,Storage_Type::SSD,256);
         c8=std::make_shared<Storage>("AMD","CS 9800",500,true,Storage_Type::SSD,256);
         c9=std::make_shared<Storage>("SAMSUNG","CS 6700-S",300,false,Storage_Type::SSD,512);
@@ -75,9 +80,10 @@ int main(){
         c12= std::make_shared<Motherboard>("ASUS","ASUS KC-33",340,true,CPU_Socket::LGA_1151,4,Format::eATX,false);
         c13=std::make_shared<GPU>("ASUS","GeForce RTX 3060",2000,true,16,GPU_Memory_Type::GDDR6,GPU_Series::GTX_3000,gaming_ports_gpu,4);
         c14=std::make_shared<Power_Supply>("Corsair","SQ-890",900,true,PS_Power::MHz_850,PS_Certification::Platinum_80,PS_Modular::Full_Modular);
-        c15=std::make_shared<CPU>("Intel","Intel i3-2564",300,false,2,4,4,CPU_Socket::LGA_1700,CPU_Series::Intel_I3);
-        c16=std::make_shared<RAM>("ADATA","ADATA T34",700,true,RAM_type::DDR4,RAM_Frequency::MHz_2666,32,true);
 
+        c15=std::make_shared<CPU>("Intel","Intel i3-2564",300,false,2,4,4,CPU_Socket::LGA_1700,CPU_Series::Intel_I3);
+        c16 = std::make_shared<RAM>("ADATA", "ADATA T34", 700, true, RAM_type::DDR4, RAM_Frequency::MHz_2666, 32, true);
+        c26 = std::make_shared<Monitor>("X3KK", "Monitor", 340, true, 18, 2400);
 
     } catch (constructor_error & e) {
         cout << e.what() << "\n";
@@ -87,6 +93,7 @@ int main(){
         cout<<e.what()<<"\n";
     }
 
+
     c17=c16->clone();
     c18=c17->clone();
     c19=c18->clone();
@@ -95,23 +102,22 @@ int main(){
     c22=c3->clone();
     c23=c4->clone();
     c24=c5->clone();
-    c25=c5->clone();
-
+    c25 = c5->clone();
+    c27 = c26->clone();
 
 
     c25->change_price(2500);
+    c26->change_price(400);
 
 
-
-    vector<std::shared_ptr<Component>> components_1{c1,c2,c3,c4,c5,c6,c7,c8,c9,c10};
-    vector<std::shared_ptr<Component>> components_2{c13,c14,c15,c16,c19,c20,c21,c22,c23,c24,c25};
+    vector<std::shared_ptr<Component>> components_1{c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c26, c27};
+    vector<std::shared_ptr<Component>> components_2{c13, c14, c15, c16, c19, c20, c21, c22, c23, c24, c25, c26};
     Deposit D1;
 
 
     D1.add_products(components_1);
 
-    Deposit D2=D1;
-
+    Deposit D2 = D1;
 
 
     D2.add_product(c11);

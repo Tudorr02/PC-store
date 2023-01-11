@@ -42,7 +42,7 @@ endif()
 
 # NOTE: update executable name in .github/workflows/cmake.yml when changing name here
 
-add_executable(${PROJECT_NAME} main.cpp Case.cpp Component.cpp CPU.cpp Deposit.cpp GPU.cpp Motherboard.cpp Power_Supply.cpp RAM.cpp Storage.cpp)
+add_executable(${PROJECT_NAME} main.cpp Case.cpp Component.cpp CPU.cpp Deposit.cpp GPU.cpp Motherboard.cpp Power_Supply.cpp RAM.cpp Storage.cpp Monitor.cpp)
 
 ###############################################################################
 
